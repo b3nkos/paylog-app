@@ -4,11 +4,12 @@ import Dashboard from "./components/Dashboard.tsx";
 import BorrowerList from "./components/BorrowerList.tsx";
 import FormDialog from "./components/FormDialog.tsx";
 import type {Borrower} from "./models/Borrower.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
 
     const [isOpen, setOpen] = useState<boolean>(false);
+    const [borrowerList, setBorrowerList] = useState<Borrower[]>([]);
 
     function handleNewBorrowerCreation() {
         setOpen(true);
@@ -19,8 +20,13 @@ function App() {
     }
 
     function handleSubmitForm(borrower: Borrower) {
-        console.log(borrower);
+        setBorrowerList((prev) => [...prev, borrower]);
+        setOpen(false);
     }
+
+    useEffect(() => {
+        console.log(borrowerList);
+    }, [borrowerList]);
 
     return (
         <main className="container px-2 mx-auto">
@@ -28,7 +34,7 @@ function App() {
             <Dashboard totalBorrowers={2} totalOutstanding={1} totalPaid={1000}/>
             <hr className="border-gray-200"/>
             <FormDialog isOpen={isOpen} onSubmit={handleSubmitForm} handleOnClose={handleCloseFormDialog}/>
-            <BorrowerList/>
+            <BorrowerList list={borrowerList}/>
         </main>
     )
 }

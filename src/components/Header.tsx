@@ -1,4 +1,4 @@
-import {BasicButton} from "./BasicButton.tsx";
+import {Button} from "./Button.tsx";
 
 interface Props {
     handleOnclick: () => void
@@ -11,7 +11,7 @@ function Header({handleOnclick}: Props) {
                 <h1 className="text-3xl font-medium">Paylog</h1>
                 <p className="text-muted-foreground">Track your personal loans</p>
             </nav>
-            <BasicButton onClick={handleOnclick}>+ Add Borrower</BasicButton>
+            <Button type="button" onClick={handleOnclick}>+ Add Borrower</Button>
         </header>
     );
 }

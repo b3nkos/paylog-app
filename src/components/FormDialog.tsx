@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import {type FormEvent} from "react";
 import type {Borrower} from "../models/Borrower.ts";
-import {SubmitButton} from "./BasicButton.tsx";
+import {Button} from "./Button.tsx";
 
 interface Props {
     isOpen: boolean,
@@ -39,15 +39,16 @@ function FormDialog({isOpen, onSubmit, handleOnClose}: Props) {
                     </div>
 
                     <div className="flex justify-end gap-2">
-                        <button
+                        <Button
                             type="button"
-                            onClick={handleOnClose}
-                            className="px-4 py-2 rounded border border-gray-300 text-sm hover:bg-gray-50">
+                            level="secondary"
+                            onClick={handleOnClose}>
                             Cancel
-                        </button>
-                        <SubmitButton>
-                            Submit
-                        </SubmitButton>
+                        </Button>
+                        <Button type="submit" onClick={() => {
+                        }}>
+                            Add Borrower
+                        </Button>
                     </div>
                 </form>
             </div>
